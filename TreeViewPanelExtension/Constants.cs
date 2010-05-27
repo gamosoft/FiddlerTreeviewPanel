@@ -11,7 +11,6 @@ namespace TreeViewPanelExtension
     /// </summary>
     public static class Constants
     {
-
         #region "Variables"
 
         /// <summary>
@@ -39,7 +38,11 @@ namespace TreeViewPanelExtension
         /// </summary>
         public static string TreeViewName = "sessionsTV";
 
-        #endregion "Variables"
+        /// <summary>
+        /// Text of the remove button
+        /// </summary>
+        public static string RemoveButtonText = "Remove";
 
+        #endregion "Variables"
     }
 }

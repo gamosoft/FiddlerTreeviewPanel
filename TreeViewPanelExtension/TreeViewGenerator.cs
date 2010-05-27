@@ -1,29 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Fiddler;
 using System.Windows.Forms;
-
+using Fiddler;
 
 namespace TreeViewPanelExtension
 {
     /// <summary>
     /// Class to generate the nodes using the Fiddler requests/responses
     /// </summary>
-    public class TreeViewGenerator : IAutoTamper    // Ensure class is public, or Fiddler won't see it!
+    public class TreeViewGenerator : IAutoTamper
     {
-
-        #region "Variables"
-        
-        //string sUserAgent = "";
-        
-        #endregion "Variables"
-
-        #region "Properties"
-
-        #endregion "Properties"
-
         #region "Methods"
 
         /// <summary>
@@ -35,13 +21,21 @@ namespace TreeViewPanelExtension
 
                But it's also possible that AutoTamper* methods are called before OnLoad (below), so be
                sure any needed data structures are initialized to safe values here in this constructor */
-
-            //string sUserAgent = "Violin";
         }
 
+        /// <summary>
+        /// Delegate to add nodes to the TreeView from another thread
+        /// </summary>
+        /// <param name="tv">TreeView</param>
+        /// <param name="oSession">Fiddler session</param>
         public delegate void Add(TreeView tv, Session oSession);
 
-        public void Add1(TreeView tv, Session oSession)
+        /// <summary>
+        /// Method that adds a session to a TreeView
+        /// </summary>
+        /// <param name="tv">TreeView</param>
+        /// <param name="oSession">Fiddler session</param>
+        public void AddSession(TreeView tv, Session oSession)
         {
             string hostName = oSession.hostname;
             if (oSession.isHTTPS)
@@ -73,25 +67,11 @@ namespace TreeViewPanelExtension
             {
                 if (host.Text == hostName)
                 {
-                    //oSession.fullUrl;
-                    //oSession.host;
-                    //oSession.hostname;
-                    //oSession.id;
-                    //oSession.isFTP;
-                    //oSession.isHTTPS;
-                    //oSession.isTunnel;
-                    //oSession.PathAndQuery;
-                    //oSession.port;
-                    //oSession.responseCode;
-                    //oSession.state = SessionStates.Done;
-                    //oSession.url;
-
-                    //oSession.port
                     result = host;
                     break; // Exit foreach
                 }
             }
-
+            // Not found, create a new one so we nest following sessions to the same host below
             if (result == null)
             {
                 result = tv.Nodes.Add(hostName);
@@ -110,8 +90,7 @@ namespace TreeViewPanelExtension
                 justPath = oSession.PathAndQuery;
             }
 
-            //string[] folders = oSession.PathAndQuery.Split(new string[] { @"\", "/" }, StringSplitOptions.RemoveEmptyEntries);
-
+            // Default node text to be displayed
             string nodeText = "/";
 
             if (!String.IsNullOrEmpty(contents[0]))
@@ -120,6 +99,7 @@ namespace TreeViewPanelExtension
 
                 if (folders.Length > 1)
                 {
+                    // Go "down" in the hierarchy to locate the last subfolder where the session needs to be placed
                     for (int i = 0; i < folders.Length - 1; i++)
                     {
                         TreeNode found = null;
@@ -144,18 +124,17 @@ namespace TreeViewPanelExtension
                         }
                     }
                 }
-
+                // The last one will be the actual page, image, script, etc...
                 if (folders.Length > 0)
                     nodeText = folders[folders.Length - 1];
             }
 
+            // Effectively create new node with the information so far
             TreeNode childNode = new TreeNode();
-            //childNode.Text = oSession.PathAndQuery;
             childNode.Text = nodeText;
             if (contents.Length > 1)
-            {
                 childNode.Text += "?" + contents[1];
-            }
+
             childNode.Tag = oSession; // Store the Session here as well
             childNode.ToolTipText = oSession.fullUrl;
 
@@ -178,10 +157,6 @@ namespace TreeViewPanelExtension
             childNode.SelectedImageIndex = nodeImage;
 
             result.Nodes.Add(childNode);
-
-            // New to add the node to a separate list for faster performance
-            //List<TreeNode> nodes = tv.Tag as List<TreeNode>;
-            //nodes.Add(childNode);
         }
 
         #endregion "Methods"
@@ -198,17 +173,17 @@ namespace TreeViewPanelExtension
             if (oSession.ViewItem != null)
             {
                 TreeView tv = FiddlerApplication.UI.pnlSessions.Controls[Constants.TreeViewName] as TreeView;
-
                 if (tv != null)
                 {
-                    tv.Invoke(new Add(Add1), new object[] { tv, oSession });
+                    tv.Invoke(new Add(AddSession), new object[] { tv, oSession });
                 }
             }
         }
 
+        // Methods not used from the interface
         public void OnLoad() { }
         public void OnBeforeUnload() { }
-        public void AutoTamperRequestBefore(Session oSession) { } // oSession.oRequest["User-Agent"] = sUserAgent;
+        public void AutoTamperRequestBefore(Session oSession) { }
         public void AutoTamperRequestAfter(Session oSession) { }
         public void AutoTamperResponseBefore(Session oSession) { }
         public void OnBeforeReturningError(Session oSession) { }
