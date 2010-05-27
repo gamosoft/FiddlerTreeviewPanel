@@ -77,12 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="ListViewHook.cs" />
-    <Compile Include="ListViewItemCollectionWithEvents.cs" />
-    <Compile Include="WindowsHook.cs" />
-    <Compile Include="ObservableListView.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
