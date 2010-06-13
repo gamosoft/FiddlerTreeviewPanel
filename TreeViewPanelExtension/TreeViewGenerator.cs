@@ -26,16 +26,16 @@ namespace TreeViewPanelExtension
         /// <summary>
         /// Delegate to add nodes to the TreeView from another thread
         /// </summary>
-        /// <param name="tv">TreeView</param>
+        /// <param name="tv">CustomTreeView</param>
         /// <param name="oSession">Fiddler session</param>
-        public delegate void Add(TreeView tv, Session oSession);
+        public delegate void Add(CustomTreeView tv, Session oSession);
 
         /// <summary>
         /// Method that adds a session to a TreeView
         /// </summary>
-        /// <param name="tv">TreeView</param>
+        /// <param name="tv">CustomTreeView</param>
         /// <param name="oSession">Fiddler session</param>
-        public void AddSession(TreeView tv, Session oSession)
+        public void AddSession(CustomTreeView tv, Session oSession)
         {
             string hostName = oSession.hostname;
             if (oSession.isHTTPS)
@@ -172,7 +172,7 @@ namespace TreeViewPanelExtension
             // If it's null, it will have been intercepted by the filters
             if (oSession.ViewItem != null)
             {
-                TreeView tv = FiddlerApplication.UI.pnlSessions.Controls[Constants.TreeViewName] as TreeView;
+                CustomTreeView tv = FiddlerApplication.UI.pnlSessions.Controls[Constants.TreeViewName] as CustomTreeView;
                 if (tv != null)
                 {
                     tv.Invoke(new Add(AddSession), new object[] { tv, oSession });
