@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Fiddler;
 using Microsoft.Win32;
+using System.Drawing;
 
 namespace TreeViewPanelExtension
 {
@@ -15,7 +16,7 @@ namespace TreeViewPanelExtension
         /// <summary>
         /// Holds the nodes with the sessions
         /// </summary>
-        TreeView tv = null;
+        CustomTreeView tv = null;
 
         /// <summary>
         /// OOB list view that handles original Fiddler sessions
@@ -126,6 +127,20 @@ namespace TreeViewPanelExtension
         }
 
         /// <summary>
+        /// Before a node is selected, change the previously selected node colors
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">TreeViewCancelEventArgs</param>
+        private void tv_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            if (tv.SelectedNode != null)
+            {
+                tv.SelectedNode.ForeColor = tv.ForeColor;
+                tv.SelectedNode.BackColor = tv.BackColor;
+            }
+        }
+
+        /// <summary>
         /// Selecting an item in the TreeView will select the corresponding Session in the ListView
         /// so the information is sent to the inspector panels, etc...
         /// </summary>
@@ -145,7 +160,23 @@ namespace TreeViewPanelExtension
                 }
             }
         }
-        
+
+        /// <summary>
+        /// When the treeview loses focus, highlight the currently selected node (if any)
+        /// so it's easier to track
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">EventArgs</param>
+        private void tv_LostFocus(object sender, EventArgs e)
+        {
+            if (tv.SelectedNode != null)
+            {
+                tv.SelectedNode.ForeColor = SystemColors.HighlightText;
+                tv.SelectedNode.BackColor = SystemColors.Highlight;
+            }
+
+        }
+
         /// <summary>
         /// After expanding a node, change the icon if it's a folder
         /// </summary>
@@ -157,6 +188,23 @@ namespace TreeViewPanelExtension
             {
                 e.Node.ImageIndex = 3;
                 e.Node.SelectedImageIndex = 3;
+            }
+        }
+
+        /// <summary>
+        /// Double clicking a node will expand/collapse all child nodes
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">TreeNodeMouseClickEventArgs</param>
+        private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.IsExpanded)
+            {
+                e.Node.Collapse(false);
+            }
+            else
+            {
+                e.Node.ExpandAll();
             }
         }
 
@@ -179,7 +227,7 @@ namespace TreeViewPanelExtension
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">ToolStripItemClickedEventArgs</param>
-        void btnRemove_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void btnRemove_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             switch (e.ClickedItem.Text.ToLower())
             {
@@ -213,15 +261,19 @@ namespace TreeViewPanelExtension
             FiddlerApplication.UI.pnlSessions.SizeChanged += new EventHandler(pnlSessions_SizeChanged);
 
             // Create our TreeView
-            tv = new TreeView();
+            tv = new CustomTreeView();
             tv.Name = Constants.TreeViewName;
             tv.ImageList = this.imageList;
             tv.Location = lvSessions.Location;
             tv.Size = lvSessions.Size;
+            tv.HideSelection = false; // If "false" the highlight is too "light", so we'll keep the selection "manually"
             tv.ContextMenu = FiddlerApplication.UI.mnuSessionContext; // Assign same context menu
+            //tv.BeforeSelect += new TreeViewCancelEventHandler(tv_BeforeSelect);
+            //tv.LostFocus += new EventHandler(tv_LostFocus);
             tv.AfterSelect += new TreeViewEventHandler(tv_AfterSelect);
             tv.AfterCollapse += new TreeViewEventHandler(tv_AfterCollapse);
             tv.AfterExpand += new TreeViewEventHandler(tv_AfterExpand);
+            tv.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(tv_NodeMouseDoubleClick);
             FiddlerApplication.UI.pnlSessions.Controls.Add(tv);
 
             // TODO: Avoid hardcoded reference to the actual button
