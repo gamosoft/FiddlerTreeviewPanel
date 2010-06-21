@@ -75,8 +75,8 @@ namespace TreeViewPanelExtension
             if (result == null)
             {
                 result = tv.Nodes.Add(hostName);
-                result.ImageIndex = 1;
-                result.SelectedImageIndex = 1;
+                result.ImageKey = Constants.ImageKeyHost;
+                result.SelectedImageKey = Constants.ImageKeyHost;
             }
 
             string[] contents = oSession.PathAndQuery.Split(new char[] { '?' });
@@ -115,8 +115,8 @@ namespace TreeViewPanelExtension
                         if (found == null)
                         {
                             result = result.Nodes.Add(folders[i]);
-                            result.ImageIndex = 2;
-                            result.SelectedImageIndex = 2;
+                            result.ImageKey = Constants.ImageKeyClosedFolder;
+                            result.SelectedImageKey = Constants.ImageKeyClosedFolder;
                         }
                         else
                         {
@@ -138,23 +138,40 @@ namespace TreeViewPanelExtension
             childNode.Tag = oSession; // Store the Session here as well
             childNode.ToolTipText = oSession.fullUrl;
 
-            int nodeImage = 4;
+            string nodeImage = Constants.ImageKeyHttpCode200;
             switch (oSession.responseCode)
             {
+                case 200: // OK
+                    if (Constants.ImageExtensions.Any(ext => nodeText.ToLower().EndsWith(ext)))
+                    {
+                        nodeImage = Constants.ImageKeyGenericImage;
+                    }
+                    break;
+                case 301: // Moved permanently
+                    nodeImage = Constants.ImageKeyHttpCode301;
+                    break;
+                case 304: // Unmodified
+                    if (Constants.ImageExtensions.Any(ext => nodeText.ToLower().EndsWith(ext)))
+                    {
+                        nodeImage = Constants.ImageKeyGenericImageVisited;
+                    }
+                    else
+                    {
+                        nodeImage = Constants.ImageKeyHttpCode304;
+                    }
+                    break;
                 case 401: // Unauthorized
-                    nodeImage = 5;
+                    nodeImage = Constants.ImageKeyHttpCode401;
+                    break;
+                case 404: // Not found
+                    nodeImage = Constants.ImageKeyHttpCode404;
                     break;
                 default:
                     break;
             }
 
-            if (Constants.ImageExtensions.Any(ext => nodeText.ToLower().EndsWith(ext)))
-            {
-                nodeImage = 6;
-            }
-
-            childNode.ImageIndex = nodeImage;
-            childNode.SelectedImageIndex = nodeImage;
+            childNode.ImageKey = nodeImage;
+            childNode.SelectedImageKey = nodeImage;
 
             result.Nodes.Add(childNode);
         }
