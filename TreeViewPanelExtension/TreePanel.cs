@@ -29,9 +29,14 @@ namespace TreeViewPanelExtension
         private System.Windows.Forms.MenuItem mnuShowPanel;
 
         /// <summary>
-        /// 
+        /// New menu item to show/hide the panel
         /// </summary>
         private System.Windows.Forms.MenuItem miShowPanelEnabled;
+
+        /// <summary>
+        /// New item to show about information
+        /// </summary>
+        private System.Windows.Forms.MenuItem miAbout;
 
         /// <summary>
         /// To keep images to be used in the TreeView
@@ -70,7 +75,8 @@ namespace TreeViewPanelExtension
             // Initialize menu options
             this.mnuShowPanel = new System.Windows.Forms.MenuItem();
             this.miShowPanelEnabled = new System.Windows.Forms.MenuItem();
-            this.mnuShowPanel.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { this.miShowPanelEnabled });
+            this.miAbout = new System.Windows.Forms.MenuItem();
+            this.mnuShowPanel.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { this.miShowPanelEnabled, this.miAbout });
 
             this.mnuShowPanel.Text = "TreeView&Panel";
             this.miShowPanelEnabled.Index = 0;
@@ -78,6 +84,10 @@ namespace TreeViewPanelExtension
             this.miShowPanelEnabled.Shortcut = Shortcut.CtrlF1;
             this.miShowPanelEnabled.Checked = this.ShowPanel;
             this.miShowPanelEnabled.Click += new EventHandler(miShowPanelEnabled_Click);
+
+            this.miAbout.Index = 1;
+            this.miAbout.Text = "&About...";
+            this.miAbout.Click += new EventHandler(miAbout_Click);
 
             // Add our menu option before the last option (Help) to keep Windows consistency
             FiddlerApplication.UI.mnuMain.MenuItems.Add(FiddlerApplication.UI.mnuMain.MenuItems.Count - 1, mnuShowPanel);
@@ -107,6 +117,19 @@ namespace TreeViewPanelExtension
             this.miShowPanelEnabled.Checked = !this.miShowPanelEnabled.Checked;
             this.ShowPanel = this.miShowPanelEnabled.Checked;
             this.ShowHidePanel();
+        }
+
+        /// <summary>
+        /// Show an small about dialog box
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">EventArgs</param>
+        private void miAbout_Click(object sender, EventArgs e)
+        {
+            using (AboutForm about = new AboutForm())
+            {
+                about.ShowDialog();
+            }
         }
 
         /// <summary>
