@@ -84,13 +84,17 @@ namespace TreeViewPanelExtension
 
             // Initialize images from the embedded resource file
             this.imageList = new ImageList();
-            this.imageList.Images.Add(Resources._1403_Globe_16x16);
-            this.imageList.Images.Add(Resources._1409_Monitor_16x16); // Host
-            this.imageList.Images.Add(Resources.Folder_16x16); // Closed folder
-            this.imageList.Images.Add(Resources.FolderOpen_16x16_72); // Open folder
-            this.imageList.Images.Add(Resources._109_AllAnnotations_Default_16x16_72); // 200
-            this.imageList.Images.Add(Resources._109_AllAnnotations_donotenter_16x16); // 401
-            this.imageList.Images.Add(Resources.generic_picture_16x16); // Images
+            this.imageList.Images.Add(Constants.ImageKeyGlobe, Resources._1403_Globe_16x16);
+            this.imageList.Images.Add(Constants.ImageKeyHost, Resources._1409_Monitor_16x16); // Host
+            this.imageList.Images.Add(Constants.ImageKeyClosedFolder, Resources.Folder_16x16); // Closed folder
+            this.imageList.Images.Add(Constants.ImageKeyOpenFolder, Resources.FolderOpen_16x16_72); // Open folder
+            this.imageList.Images.Add(Constants.ImageKeyHttpCode200, Resources._109_AllAnnotations_Default_16x16_72); // 200, OK
+            this.imageList.Images.Add(Constants.ImageKeyHttpCode301, Resources._010_LowPriority_16x16_72); // 301, Moved permanently
+            this.imageList.Images.Add(Constants.ImageKeyHttpCode304, Resources._109_AllAnnotations_Complete_16x16_72); // 304, Unmodified
+            this.imageList.Images.Add(Constants.ImageKeyHttpCode401, Resources._109_AllAnnotations_donotenter_16x16); // 401, Forbidden
+            this.imageList.Images.Add(Constants.ImageKeyHttpCode404, Resources._109_AllAnnotations_Error_16x16_72); // 404, Not found
+            this.imageList.Images.Add(Constants.ImageKeyGenericImage, Resources.generic_picture_16x16); // Images
+            this.imageList.Images.Add(Constants.ImageKeyGenericImageVisited, Resources.generic_picture_16x16_visited); // Images
         }
 
         /// <summary>
@@ -184,10 +188,10 @@ namespace TreeViewPanelExtension
         /// <param name="e">TreeViewEventArgs</param>
         private void tv_AfterExpand(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.ImageIndex == 2)
+            if (e.Node.ImageKey == Constants.ImageKeyClosedFolder)
             {
-                e.Node.ImageIndex = 3;
-                e.Node.SelectedImageIndex = 3;
+                e.Node.ImageKey = Constants.ImageKeyOpenFolder;
+                e.Node.SelectedImageKey = Constants.ImageKeyOpenFolder;
             }
         }
 
@@ -215,10 +219,10 @@ namespace TreeViewPanelExtension
         /// <param name="e">TreeViewEventArgs</param>
         private void tv_AfterCollapse(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.ImageIndex == 3)
+            if (e.Node.ImageKey == Constants.ImageKeyOpenFolder)
             {
-                e.Node.ImageIndex = 2;
-                e.Node.SelectedImageIndex = 2;
+                e.Node.ImageKey = Constants.ImageKeyClosedFolder;
+                e.Node.SelectedImageKey = Constants.ImageKeyClosedFolder;
             }
         }
 

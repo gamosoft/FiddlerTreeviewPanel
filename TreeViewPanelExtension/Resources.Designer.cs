@@ -165,6 +165,13 @@ namespace TreeViewPanelExtension {
             }
         }
         
+        internal static System.Drawing.Bitmap generic_picture_16x16_visited {
+            get {
+                object obj = ResourceManager.GetObject("generic_picture_16x16_visited", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap pending_request_16x16_72 {
             get {
                 object obj = ResourceManager.GetObject("pending_request_16x16_72", resourceCulture);
