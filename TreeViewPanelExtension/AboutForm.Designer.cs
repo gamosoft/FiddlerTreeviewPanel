@@ -38,7 +38,7 @@
             // lnkUrl
             // 
             this.lnkUrl.AutoSize = true;
-            this.lnkUrl.Location = new System.Drawing.Point(12, 165);
+            this.lnkUrl.Location = new System.Drawing.Point(12, 84);
             this.lnkUrl.Name = "lnkUrl";
             this.lnkUrl.Size = new System.Drawing.Size(260, 17);
             this.lnkUrl.TabIndex = 0;
@@ -49,7 +49,7 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(132, 64);
+            this.lblVersion.Location = new System.Drawing.Point(132, 20);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(53, 17);
             this.lblVersion.TabIndex = 1;
@@ -58,7 +58,7 @@
             // lblInstalledVersion
             // 
             this.lblInstalledVersion.AutoSize = true;
-            this.lblInstalledVersion.Location = new System.Drawing.Point(12, 64);
+            this.lblInstalledVersion.Location = new System.Drawing.Point(12, 20);
             this.lblInstalledVersion.Name = "lblInstalledVersion";
             this.lblInstalledVersion.Size = new System.Drawing.Size(114, 17);
             this.lblInstalledVersion.TabIndex = 2;
@@ -67,7 +67,7 @@
             // lblGetLatest
             // 
             this.lblGetLatest.AutoSize = true;
-            this.lblGetLatest.Location = new System.Drawing.Point(12, 148);
+            this.lblGetLatest.Location = new System.Drawing.Point(12, 60);
             this.lblGetLatest.Name = "lblGetLatest";
             this.lblGetLatest.Size = new System.Drawing.Size(252, 17);
             this.lblGetLatest.TabIndex = 3;
@@ -76,11 +76,11 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(101, 206);
+            this.btnClose.Location = new System.Drawing.Point(101, 118);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 37);
             this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "Close";
+            this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -89,7 +89,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(282, 255);
+            this.ClientSize = new System.Drawing.Size(282, 170);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblGetLatest);
             this.Controls.Add(this.lblInstalledVersion);
