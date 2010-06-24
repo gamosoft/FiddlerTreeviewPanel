@@ -201,7 +201,6 @@ namespace TreeViewPanelExtension
                 tv.SelectedNode.ForeColor = SystemColors.HighlightText;
                 tv.SelectedNode.BackColor = SystemColors.Highlight;
             }
-
         }
 
         /// <summary>
@@ -250,6 +249,43 @@ namespace TreeViewPanelExtension
         }
 
         /// <summary>
+        /// Intercepts keystrokes
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">KeyEventArgs</param>
+        private void tv_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    MessageBox.Show("Delete");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Intercepts keystrokes
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">PreviewKeyDownEventArgs</param>
+        private void tv_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    if (lvSessions.SelectedItems.Count != 0)
+                    {
+                        MessageBox.Show(e.Shift.ToString());
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
         /// Delete sessions from the TreeView
         /// </summary>
         /// <param name="sender">Sender</param>
@@ -272,7 +308,6 @@ namespace TreeViewPanelExtension
                     break;
             }
         }
-
 
         #endregion "Methods"
 
@@ -301,6 +336,8 @@ namespace TreeViewPanelExtension
             tv.AfterCollapse += new TreeViewEventHandler(tv_AfterCollapse);
             tv.AfterExpand += new TreeViewEventHandler(tv_AfterExpand);
             tv.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(tv_NodeMouseDoubleClick);
+            //tv.KeyDown += new KeyEventHandler(tv_KeyDown);
+            //tv.PreviewKeyDown += new PreviewKeyDownEventHandler(tv_PreviewKeyDown);
             FiddlerApplication.UI.pnlSessions.Controls.Add(tv);
 
             // TODO: Avoid hardcoded reference to the actual button
@@ -317,7 +354,6 @@ namespace TreeViewPanelExtension
                             btnRemove.DropDownItemClicked += new ToolStripItemClickedEventHandler(btnRemove_DropDownItemClicked);
                         }
                     }
-
                 }
             }
 
