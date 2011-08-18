@@ -44,6 +44,11 @@ namespace TreeViewPanelExtension
         public static string RemoveButtonText = "Remove";
 
         /// <summary>
+        /// Tooltip of the remove button
+        /// </summary>
+        public static string RemoveButtonToolTipText = "Remove sessions from the session list.";
+
+        /// <summary>
         /// Image key for the globe
         /// </summary>
         public static string ImageKeyGlobe = "Globe";

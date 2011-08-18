@@ -294,7 +294,7 @@ namespace TreeViewPanelExtension
         {
             switch (e.ClickedItem.Text.ToLower())
             {
-                case "all":
+                case "remove all":
                     tv.Nodes.Clear();
                     break;
                 case "images":
@@ -340,7 +340,11 @@ namespace TreeViewPanelExtension
             //tv.PreviewKeyDown += new PreviewKeyDownEventHandler(tv_PreviewKeyDown);
             FiddlerApplication.UI.pnlSessions.Controls.Add(tv);
 
+            // Show or hide depending on the registry value
+            this.ShowHidePanel();
+
             // TODO: Avoid hardcoded reference to the actual button
+            // TODO: Research possible error executing the following (code after this would not execute)
             foreach (Control c in FiddlerApplication.UI.Controls)
             {
                 if (c is ToolStrip)
@@ -348,7 +352,8 @@ namespace TreeViewPanelExtension
                     ToolStrip menuBar = c as ToolStrip;
                     foreach (ToolStripItem btn in menuBar.Items)
                     {
-                        if (btn.Text.Equals(Constants.RemoveButtonText, StringComparison.CurrentCultureIgnoreCase))
+                        //if (btn.Text.Equals(Constants.RemoveButtonText, StringComparison.CurrentCultureIgnoreCase))
+                        if (btn.ToolTipText.Equals(Constants.RemoveButtonToolTipText, StringComparison.CurrentCultureIgnoreCase))
                         {
                             ToolStripDropDownButton btnRemove = btn as ToolStripDropDownButton;
                             btnRemove.DropDownItemClicked += new ToolStripItemClickedEventHandler(btnRemove_DropDownItemClicked);
@@ -356,9 +361,6 @@ namespace TreeViewPanelExtension
                     }
                 }
             }
-
-            // Show or hide depending on the registry value
-            this.ShowHidePanel();
         }
 
         /// <summary>
