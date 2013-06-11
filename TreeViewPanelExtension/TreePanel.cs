@@ -353,7 +353,8 @@ namespace TreeViewPanelExtension
                     foreach (ToolStripItem btn in menuBar.Items)
                     {
                         //if (btn.Text.Equals(Constants.RemoveButtonText, StringComparison.CurrentCultureIgnoreCase))
-                        if (btn.ToolTipText.Equals(Constants.RemoveButtonToolTipText, StringComparison.CurrentCultureIgnoreCase))
+                        //if (btn.ToolTipText.Equals(Constants.RemoveButtonToolTipText, StringComparison.CurrentCultureIgnoreCase))
+                        if (btn.ImageKey.Equals(Constants.RemoveButtonImageKey, StringComparison.CurrentCultureIgnoreCase))
                         {
                             ToolStripDropDownButton btnRemove = btn as ToolStripDropDownButton;
                             btnRemove.DropDownItemClicked += new ToolStripItemClickedEventHandler(btnRemove_DropDownItemClicked);
