@@ -287,6 +287,17 @@ namespace TreeViewPanelExtension
             }
         }
 
+        private void LvSessions_Invalidated(object sender, InvalidateEventArgs e)
+        {
+            var sessionsList = sender as SessionListView;
+            if (sessionsList == null)
+                return;
+
+            // Hack to clear the treeview panel if the original list has been cleared and invalidated
+            if (sessionsList.Items.Count == 0)
+                this.tv.Nodes.Clear();
+        }
+
         #endregion "Methods"
 
         #region "IFiddlerExtension Members"
@@ -324,17 +335,6 @@ namespace TreeViewPanelExtension
 
             // Show or hide depending on the registry value
             this.ShowHidePanel();
-        }
-
-        private void LvSessions_Invalidated(object sender, InvalidateEventArgs e)
-        {
-            var sessionsList = sender as SessionListView;
-            if (sessionsList == null)
-                return;
-
-            // Hack to clear the treeview panel if the original list has been cleared and invalidated
-            if (sessionsList.Items.Count == 0)
-                this.tv.Nodes.Clear();
         }
 
         /// <summary>
