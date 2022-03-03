@@ -8,6 +8,8 @@ namespace TreeViewPanelExtension
 {
     /// <summary>
     /// Creates a new control to be used in Fiddler, that represents the information in a TreeView
+    /// TODO: Add installation path %userprofile%\AppData\Local\Programs\Fiddler\Scripts
+    /// Requiring version of Fiddler Classic 5.x
     /// </summary>
     public class TreePanel : IFiddlerExtension
     {

@@ -38,7 +38,7 @@
             // lnkUrl
             // 
             this.lnkUrl.AutoSize = true;
-            this.lnkUrl.Location = new System.Drawing.Point(9, 68);
+            this.lnkUrl.Location = new System.Drawing.Point(28, 93);
             this.lnkUrl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnkUrl.Name = "lnkUrl";
             this.lnkUrl.Size = new System.Drawing.Size(279, 15);
@@ -50,7 +50,7 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(99, 16);
+            this.lblVersion.Location = new System.Drawing.Point(144, 37);
             this.lblVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(47, 15);
@@ -60,7 +60,7 @@
             // lblInstalledVersion
             // 
             this.lblInstalledVersion.AutoSize = true;
-            this.lblInstalledVersion.Location = new System.Drawing.Point(9, 16);
+            this.lblInstalledVersion.Location = new System.Drawing.Point(118, 16);
             this.lblInstalledVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInstalledVersion.Name = "lblInstalledVersion";
             this.lblInstalledVersion.Size = new System.Drawing.Size(98, 15);
@@ -70,7 +70,7 @@
             // lblGetLatest
             // 
             this.lblGetLatest.AutoSize = true;
-            this.lblGetLatest.Location = new System.Drawing.Point(9, 49);
+            this.lblGetLatest.Location = new System.Drawing.Point(61, 74);
             this.lblGetLatest.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGetLatest.Name = "lblGetLatest";
             this.lblGetLatest.Size = new System.Drawing.Size(213, 15);
@@ -80,8 +80,8 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(76, 96);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClose.Location = new System.Drawing.Point(139, 129);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(56, 30);
             this.btnClose.TabIndex = 4;
@@ -94,14 +94,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(212, 138);
+            this.ClientSize = new System.Drawing.Size(338, 180);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblGetLatest);
             this.Controls.Add(this.lblInstalledVersion);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lnkUrl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutForm";

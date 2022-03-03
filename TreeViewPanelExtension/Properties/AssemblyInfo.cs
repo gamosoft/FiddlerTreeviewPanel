@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TreeViewPanelExtension")]
 [assembly: AssemblyDescription("Fiddler Extension to display sessions in a TreeView")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Gamosoft")]
 [assembly: AssemblyProduct("TreeViewPanelExtension")]
-[assembly: AssemblyCopyright("Copyright © 2010")]
+[assembly: AssemblyCopyright("Copyright © 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -34,4 +34,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.7.5.0")]
 [assembly: AssemblyFileVersion("0.7.5.0")]
-[assembly: Fiddler.RequiredVersion("5.0.0.0")]
+[assembly: Fiddler.RequiredVersion("2.4.4.5")]
