@@ -80,15 +80,7 @@ namespace TreeViewPanelExtension
             }
 
             string[] contents = oSession.PathAndQuery.Split(new char[] { '?' });
-            string justPath = "";
-            if (contents.Length > 1)
-            {
-                justPath = contents[0];
-            }
-            else
-            {
-                justPath = oSession.PathAndQuery;
-            }
+            string justPath = (contents.Length > 1) ? contents[0] : oSession.PathAndQuery;
 
             // Default node text to be displayed
             string nodeText = $"[{oSession.id}] /";

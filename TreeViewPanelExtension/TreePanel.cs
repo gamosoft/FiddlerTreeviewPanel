@@ -325,13 +325,15 @@ namespace TreeViewPanelExtension
             lvSessions.Invalidated += LvSessions_Invalidated;
 
             // Create our TreeView
-            tv = new CustomTreeView();
-            tv.Name = Constants.TreeViewName;
-            tv.ImageList = this.imageList;
-            tv.Location = lvSessions.Location;
-            tv.Size = lvSessions.Size;
-            tv.HideSelection = false; // If "false" the highlight is too "light", so we'll keep the selection "manually"
-            tv.ContextMenu = FiddlerApplication.UI.mnuSessionContext; // Assign same context menu
+            tv = new CustomTreeView
+            {
+                Name = Constants.TreeViewName,
+                ImageList = this.imageList,
+                Location = lvSessions.Location,
+                Size = lvSessions.Size,
+                HideSelection = false, // If "false" the highlight is too "light", so we'll keep the selection "manually"
+                ContextMenu = FiddlerApplication.UI.mnuSessionContext // Assign same context menu
+            };
             //tv.BeforeSelect += new TreeViewCancelEventHandler(tv_BeforeSelect);
             //tv.LostFocus += new EventHandler(tv_LostFocus);
             tv.AfterSelect += new TreeViewEventHandler(tv_AfterSelect);
