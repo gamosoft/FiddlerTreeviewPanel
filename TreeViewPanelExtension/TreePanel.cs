@@ -59,9 +59,9 @@ namespace TreeViewPanelExtension
         #region "Methods"
 
         /// <summary>
-        /// Default constructor
+        /// Method to initialize all components
         /// </summary>
-        public TreePanel()
+        public void Initialize()
         {
             this.ShowPanel = false; // Default
 
@@ -309,9 +309,16 @@ namespace TreeViewPanelExtension
         {
             // Locate the original sessions listview
             lvSessions = FiddlerApplication.UI.pnlSessions.Controls[Constants.ListViewName] as SessionListView;
-            FiddlerApplication.UI.pnlSessions.SizeChanged += new EventHandler(pnlSessions_SizeChanged);
+            if (lvSessions == null)
+            {
+                MessageBox.Show("Unable to locate original sessions panel.", Constants.RegistryExtensionKeyName);
+                return;
+            }
+
+            this.Initialize();
 
             lvSessions.Invalidated += LvSessions_Invalidated;
+            FiddlerApplication.UI.pnlSessions.SizeChanged += new EventHandler(pnlSessions_SizeChanged);
 
             // Create our TreeView
             tv = new CustomTreeView
