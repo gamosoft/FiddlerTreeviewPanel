@@ -91,7 +91,7 @@ namespace TreeViewPanelExtension
             }
 
             // Default node text to be displayed
-            string nodeText = "/";
+            string nodeText = $"[{oSession.id}] /";
 
             if (!String.IsNullOrEmpty(contents[0]))
             {
@@ -126,7 +126,7 @@ namespace TreeViewPanelExtension
                 }
                 // The last one will be the actual page, image, script, etc...
                 if (folders.Length > 0)
-                    nodeText = folders[folders.Length - 1];
+                    nodeText = $"[{oSession.id}] {folders[folders.Length - 1]}";
             }
 
             // Effectively create new node with the information so far
@@ -187,14 +187,14 @@ namespace TreeViewPanelExtension
         public void AutoTamperResponseAfter(Session oSession)
         {
             // If it's null, it will have been intercepted by the filters
-            if (oSession.ViewItem != null)
-            {
-                CustomTreeView tv = FiddlerApplication.UI.pnlSessions.Controls[Constants.TreeViewName] as CustomTreeView;
-                if (tv != null)
-                {
-                    tv.Invoke(new Add(AddSession), new object[] { tv, oSession });
-                }
-            }
+            if (oSession.ViewItem == null)
+                return;
+
+            CustomTreeView tv = FiddlerApplication.UI.pnlSessions.Controls[Constants.TreeViewName] as CustomTreeView;
+            if (tv == null)
+                return;
+
+            tv.Invoke(new Add(AddSession), new object[] { tv, oSession });
         }
 
         // Methods not used from the interface

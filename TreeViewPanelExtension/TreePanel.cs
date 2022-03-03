@@ -322,6 +322,8 @@ namespace TreeViewPanelExtension
             lvSessions = FiddlerApplication.UI.pnlSessions.Controls[Constants.ListViewName] as SessionListView;
             FiddlerApplication.UI.pnlSessions.SizeChanged += new EventHandler(pnlSessions_SizeChanged);
 
+            lvSessions.Invalidated += LvSessions_Invalidated;
+
             // Create our TreeView
             tv = new CustomTreeView();
             tv.Name = Constants.TreeViewName;
@@ -362,6 +364,17 @@ namespace TreeViewPanelExtension
                     }
                 }
             }
+        }
+
+        private void LvSessions_Invalidated(object sender, InvalidateEventArgs e)
+        {
+            var sessionsList = sender as SessionListView;
+            if (sessionsList == null)
+                return;
+
+            // Hack to clear the treeview panel if the original list has been cleared and invalidated
+            if (sessionsList.Items.Count == 0)
+                this.tv.Nodes.Clear();
         }
 
         /// <summary>

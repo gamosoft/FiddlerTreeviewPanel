@@ -38,47 +38,52 @@
             // lnkUrl
             // 
             this.lnkUrl.AutoSize = true;
-            this.lnkUrl.Location = new System.Drawing.Point(12, 84);
+            this.lnkUrl.Location = new System.Drawing.Point(9, 68);
+            this.lnkUrl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnkUrl.Name = "lnkUrl";
-            this.lnkUrl.Size = new System.Drawing.Size(260, 17);
+            this.lnkUrl.Size = new System.Drawing.Size(279, 15);
             this.lnkUrl.TabIndex = 0;
             this.lnkUrl.TabStop = true;
-            this.lnkUrl.Text = "http://fiddlertreeviewpanel.codeplex.com";
+            this.lnkUrl.Text = "https://github.com/gamosoft/FiddlerTreeviewPanel";
             this.lnkUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkUrl_LinkClicked);
             // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(132, 20);
+            this.lblVersion.Location = new System.Drawing.Point(99, 16);
+            this.lblVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(53, 17);
+            this.lblVersion.Size = new System.Drawing.Size(47, 15);
             this.lblVersion.TabIndex = 1;
             this.lblVersion.Text = "XXXXX";
             // 
             // lblInstalledVersion
             // 
             this.lblInstalledVersion.AutoSize = true;
-            this.lblInstalledVersion.Location = new System.Drawing.Point(12, 20);
+            this.lblInstalledVersion.Location = new System.Drawing.Point(9, 16);
+            this.lblInstalledVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInstalledVersion.Name = "lblInstalledVersion";
-            this.lblInstalledVersion.Size = new System.Drawing.Size(114, 17);
+            this.lblInstalledVersion.Size = new System.Drawing.Size(98, 15);
             this.lblInstalledVersion.TabIndex = 2;
             this.lblInstalledVersion.Text = "Installed version:";
             // 
             // lblGetLatest
             // 
             this.lblGetLatest.AutoSize = true;
-            this.lblGetLatest.Location = new System.Drawing.Point(12, 60);
+            this.lblGetLatest.Location = new System.Drawing.Point(9, 49);
+            this.lblGetLatest.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGetLatest.Name = "lblGetLatest";
-            this.lblGetLatest.Size = new System.Drawing.Size(252, 17);
+            this.lblGetLatest.Size = new System.Drawing.Size(213, 15);
             this.lblGetLatest.TabIndex = 3;
             this.lblGetLatest.Text = "To get the latest version please check:";
             // 
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(101, 118);
+            this.btnClose.Location = new System.Drawing.Point(76, 96);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 37);
+            this.btnClose.Size = new System.Drawing.Size(56, 30);
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -86,16 +91,17 @@
             // 
             // AboutForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(282, 170);
+            this.ClientSize = new System.Drawing.Size(212, 138);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblGetLatest);
             this.Controls.Add(this.lblInstalledVersion);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lnkUrl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutForm";
