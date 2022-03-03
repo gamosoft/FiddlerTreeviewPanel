@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -34,4 +33,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.7.5.0")]
 [assembly: AssemblyFileVersion("0.7.5.0")]
-[assembly: Fiddler.RequiredVersion("2.4.4.5")]
+[assembly: Fiddler.RequiredVersion("2.4.4.5")] 

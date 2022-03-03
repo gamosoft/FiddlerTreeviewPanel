@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-using Fiddler;
+﻿using Fiddler;
 using Microsoft.Win32;
+using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace TreeViewPanelExtension
 {
@@ -28,17 +28,17 @@ namespace TreeViewPanelExtension
         /// <summary>
         /// New menu item
         /// </summary>
-        private System.Windows.Forms.MenuItem mnuShowPanel;
+        private MenuItem mnuShowPanel;
 
         /// <summary>
         /// New menu item to show/hide the panel
         /// </summary>
-        private System.Windows.Forms.MenuItem miShowPanelEnabled;
+        private MenuItem miShowPanelEnabled;
 
         /// <summary>
         /// New item to show about information
         /// </summary>
-        private System.Windows.Forms.MenuItem miAbout;
+        private MenuItem miAbout;
 
         /// <summary>
         /// To keep images to be used in the TreeView
@@ -64,7 +64,7 @@ namespace TreeViewPanelExtension
         public TreePanel()
         {
             this.ShowPanel = false; // Default
-            
+
             // Try to get registry configuration
             RegistryKey oReg = Registry.CurrentUser.OpenSubKey(String.Format(@"{0}\{1}\", CONFIG.GetRegPath("Root"), Constants.RegistryExtensionKeyName));
             if (null != oReg)
@@ -75,10 +75,10 @@ namespace TreeViewPanelExtension
             }
 
             // Initialize menu options
-            this.mnuShowPanel = new System.Windows.Forms.MenuItem();
-            this.miShowPanelEnabled = new System.Windows.Forms.MenuItem();
-            this.miAbout = new System.Windows.Forms.MenuItem();
-            this.mnuShowPanel.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { this.miShowPanelEnabled, this.miAbout });
+            this.mnuShowPanel = new MenuItem();
+            this.miShowPanelEnabled = new MenuItem();
+            this.miAbout = new MenuItem();
+            this.mnuShowPanel.MenuItems.AddRange(new MenuItem[] { this.miShowPanelEnabled, this.miAbout });
 
             this.mnuShowPanel.Text = "TreeView&Panel";
             this.miShowPanelEnabled.Index = 0;
@@ -287,30 +287,6 @@ namespace TreeViewPanelExtension
             }
         }
 
-        /// <summary>
-        /// Delete sessions from the TreeView
-        /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">ToolStripItemClickedEventArgs</param>
-        private void btnRemove_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            switch (e.ClickedItem.Text.ToLower())
-            {
-                case "remove all":
-                    tv.Nodes.Clear();
-                    break;
-                case "images":
-                    break;
-                case "connects":
-                    break;
-                case "non-200s":
-                    break;
-                default:
-                    // Other possible things to do here
-                    break;
-            }
-        }
-
         #endregion "Methods"
 
         #region "IFiddlerExtension Members"
@@ -348,26 +324,6 @@ namespace TreeViewPanelExtension
 
             // Show or hide depending on the registry value
             this.ShowHidePanel();
-
-            // TODO: Avoid hardcoded reference to the actual button
-            // TODO: Research possible error executing the following (code after this would not execute)
-            foreach (Control c in FiddlerApplication.UI.Controls)
-            {
-                if (c is ToolStrip)
-                {
-                    ToolStrip menuBar = c as ToolStrip;
-                    foreach (ToolStripItem btn in menuBar.Items)
-                    {
-                        //if (btn.Text.Equals(Constants.RemoveButtonText, StringComparison.CurrentCultureIgnoreCase))
-                        //if (btn.ToolTipText.Equals(Constants.RemoveButtonToolTipText, StringComparison.CurrentCultureIgnoreCase))
-                        if (btn.ImageKey.Equals(Constants.RemoveButtonImageKey, StringComparison.CurrentCultureIgnoreCase))
-                        {
-                            ToolStripDropDownButton btnRemove = btn as ToolStripDropDownButton;
-                            btnRemove.DropDownItemClicked += new ToolStripItemClickedEventHandler(btnRemove_DropDownItemClicked);
-                        }
-                    }
-                }
-            }
         }
 
         private void LvSessions_Invalidated(object sender, InvalidateEventArgs e)
@@ -392,7 +348,7 @@ namespace TreeViewPanelExtension
             oReg.SetValue(Constants.RegistryShowPanel, value, RegistryValueKind.DWord);
             oReg.Close();
         }
-        
+
         #endregion "IFiddlerExtension Members"
     }
 }

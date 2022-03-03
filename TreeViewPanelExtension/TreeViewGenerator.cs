@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Fiddler;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using Fiddler;
 
 namespace TreeViewPanelExtension
 {
@@ -196,7 +196,7 @@ namespace TreeViewPanelExtension
         public void AutoTamperRequestAfter(Session oSession) { }
         public void AutoTamperResponseBefore(Session oSession) { }
         public void OnBeforeReturningError(Session oSession) { }
-        
+
         #endregion "IAutoTamper"
     }
 }
