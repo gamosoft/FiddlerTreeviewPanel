@@ -54,10 +54,6 @@ Of course, you're free to download the code and if you want to extend it further
 
 Thanks to *Eric Lawrence* for some suggestions, I've added double-click to expand/collapse all child nodes at once (where clicked) and to keep the selected session when losing focus off the TreeView.
 
-You can download the compiled binaries from the releases section.
-
-Also from here:
-[http://blog.gamosoft.com/fiddler-treeview-panel-extension/](http://blog.gamosoft.com/fiddler-treeview-panel-extension/)
-
+You can download the compiled binaries from the [releases section](https://github.com/gamosoft/FiddlerTreeviewPanel/releases).
 
 Kind regards.
