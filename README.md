@@ -37,6 +37,11 @@ In order to install this extension you'll need to copy the compiled assembly _Tr
 
 After that, you'll need to restart Fiddler if was already running.
 
+## Improvements
+One of the latest changes has been to include the session number next to the actual request, so you can get a better view of the execution flow:
+
+![Session numbers](./images/Session-Numbers.png)
+
 ## Known issues
 Right now, there are issues in the way sessions are deleted, because the only way to effectively delete a session is by choosing the **ALL** option from the tools menu as shown in the selected screenshot:
 
@@ -49,8 +54,9 @@ Of course, you're free to download the code and if you want to extend it further
 
 Thanks to *Eric Lawrence* for some suggestions, I've added double-click to expand/collapse all child nodes at once (where clicked) and to keep the selected session when losing focus off the TreeView.
 
-You can download the compiled binaries here:
+You can download the compiled binaries from the releases section.
 
+Also from here:
 [http://blog.gamosoft.com/fiddler-treeview-panel-extension/](http://blog.gamosoft.com/fiddler-treeview-panel-extension/)
 
 
