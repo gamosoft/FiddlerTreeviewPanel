@@ -56,4 +56,8 @@ Thanks to *Eric Lawrence* for some suggestions, I've added double-click to expan
 
 You can download the compiled binaries from the [releases section](https://github.com/gamosoft/FiddlerTreeviewPanel/releases).
 
+If you find it useful and have spare time you can drop me a line saying how you like the tool and such, or better yet, you can buy me a beer if you wish. 😉
+
+[![Buy me a beer](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/donate/?business=ZXYEC3PM6K7TQ&no_recurring=0&item_name=Fiddler+Treeview+Panel+Extension&currency_code=USD)
+
 Kind regards.
